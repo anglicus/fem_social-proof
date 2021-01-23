@@ -1,0 +1,250 @@
+/*  design principles:
+    -mobile first approach
+    -use flex for mobile, grid for desktop
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;700&display=swap');
+
+:root {
+    /* primary colors */
+    --vdark-magenta: hsl(300, 43%, 22%);
+    --soft-pink: hsl(333, 80%, 67%);
+
+    /* neutral colors */
+    --dark-grayish-magenta: hsl(303, 10%, 53%);
+    --light-grayish-magenta: hsl(300, 24%, 96%);
+    --white: hsl(0, 0%, 100%);
+
+}
+
+html {
+    font-family: 'Spartan', sans-serif;
+    font-size: 16px;
+    line-height: 1.5rem;
+}
+
+#mobile-bg-images {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-image: url('/images/bg-pattern-top-mobile.svg'), url('/images/bg-pattern-bottom-mobile.svg');
+    background-position: top, bottom;
+    background-repeat: no-repeat;
+}
+
+#desktop-bg-images {
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-image: url('/images/bg-pattern-top-desktop.svg'), url('/images/bg-pattern-bottom-desktop.svg');
+    background-position: left top, right bottom;
+    background-repeat: no-repeat;
+}
+
+#main-div {
+    /* contains all other elements */
+    /* flex for mobile / grid for desktop set below under media query*/
+    display: flex; /* change for desktop */
+    flex-direction: column; /* change for desktop */
+    padding: 60px 24px 0px; /* change for desktop */
+}
+
+h2 {
+    font-size: 1.875rem;
+    line-height: 1.875rem;
+    font-weight: 700;
+    color: var(--vdark-magenta);
+    text-align: center;
+}
+
+#blurb-text {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--vdark-magenta);
+    text-align: center;
+}
+
+#rating-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.rating-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--light-grayish-magenta);
+    border-radius: 7px;
+    color: var(--vdark-magenta);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding-top: 12px;
+    margin-bottom: 16px;
+}
+
+.star-icon {
+    padding: 0px 2px;
+}
+
+#testamonial-div {
+    display: flex;
+    flex-direction: column; /* change for desktop */
+    margin-top: 32px;
+}
+
+
+
+.testamonial-box {
+    position: relative;
+    background-color: var(--vdark-magenta);
+    border-radius: 7px;
+    color: var(--light-grayish-magenta);
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding: 20px 32px;
+    margin-bottom: 16px;
+}
+
+.buyer-pic {
+    width: 43px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+}
+
+.buyer-name {
+    position: relative;
+    left: 62px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.verified-buyer {
+    position: relative;
+    left: 62px;
+    margin-top: 0px;
+    line-height: 1rem;
+    color: var(--soft-pink);
+}
+
+.quote {
+    margin-top: 25px;
+}
+
+/* adjustments for desktop devices */
+@media screen and (min-width: 400px) {
+    #mobile-bg-images {
+        display: none;
+    }
+
+    #desktop-bg-images {
+        display: block;
+    }
+
+    #main-div {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: 555px 555px;
+        grid-template-areas: 
+            "blurb rating"
+            "testamonial testamonial";
+    }
+
+    h2 {
+        font-size: 2.875rem;
+        line-height: 2.75rem;
+        padding: 0px;
+        text-align: left;
+        width: 380px;
+    }
+    #blurb {
+        grid-area: blurb;
+    }
+
+    #blurb-text {
+        text-align: left;
+        width: 410px;
+        margin-top: -20px;
+        margin-bottom: 30px;
+    }
+
+    #rating-div {
+        grid-area: rating;
+        align-items: flex-end;
+        margin-top: 50px;
+    }
+
+    .rating-box {
+        position: relative;
+        width: 445px;
+        padding: 0px;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #rating1 {
+        right: 92px;
+    }
+
+    #rating2 {
+        right: 46px;
+    }
+
+    #rating3 {
+        right: 0px;
+    }
+
+    .five-stars {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0px 32px;
+    }
+
+    #testamonial-div {
+        grid-area: testamonial;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .testamonial-box {
+        position: relative;
+        width: 286px;
+        margin-right: 30px;
+    }
+
+    #testamonial2 {
+        top: 16px;
+    }
+
+    #testamonial3 {
+        top: 32px;
+        margin-right: 0px;
+    }
+
+}
+
+
+.attribution {
+    position: absolute;
+    top: 10px;
+    margin-top: 10px;
+    font-size: 11px;
+    text-align: center;
+  }
+  .attribution a {
+    color: hsl(228, 45%, 44%);
